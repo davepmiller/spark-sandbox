@@ -1,2 +1,2 @@
-# spark-sandbox
-Apache Spark playground
+# Spark Sandbox
+Apache Spark Playground
