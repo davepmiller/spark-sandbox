@@ -1,14 +1,17 @@
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
+import org.laser.metric.Metric;
+import org.laser.pretty.Pretty;
 
 public class SparkSandbox {
     private static final String DATA_FILE_PATH = "/tmp/data.json";
 
     public static void main(String[] args) {
         generateJsonFile();
-        printDataUsingSpark();
+        long elapsed = Metric.elapsedMillis(SparkSandbox::printDataUsingSpark);
         removeJsonFile();
+        printElapsed(elapsed);
     }
 
     private static void printDataUsingSpark() {
@@ -33,5 +36,10 @@ public class SparkSandbox {
         } catch (Exception e) {
             System.out.println("Failed to remove " + DATA_FILE_PATH);
         }
+    }
+
+    private static void printElapsed(long elapsed) {
+        String msg = "SparkSandbox::printDataUsingSpark took " + elapsed + " milliseconds.";
+        System.out.println(Pretty.yellow(msg));
     }
 }
