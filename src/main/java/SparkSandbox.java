@@ -44,8 +44,8 @@ public class SparkSandbox {
     }
 
     private static void printElapsed(long elapsed) {
-        String msg = "SparkSandbox::printDataUsingSpark took "
-            + elapsed + " milliseconds.";
+        String format = "SparkSandbox::printDataUsingSpark took %s milliseconds";
+        String msg = String.format(format, elapsed);
         System.out.println(Pretty.yellow(msg));
     }
 }

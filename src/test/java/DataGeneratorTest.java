@@ -3,14 +3,14 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class DataGeneratorTest {
-    static final String FILENAME = "/tmp/data.json";
+    private static final String FILENAME = "/tmp/data.json";
 
     @Test
     public void whenGenerateDataJson_thenFileExists() throws Exception {
         DataGenerator.generateJsonToFile(FILENAME);
         File file = new File(FILENAME);
         Assert.assertTrue(file.exists());
-        file.delete();
+        Assert.assertTrue(file.delete());
     }
 
     @Test
