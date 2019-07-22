@@ -15,8 +15,13 @@ public class SparkSandbox {
     }
 
     private static void printDataUsingSpark() {
-        SparkSession spark = SparkSession.builder().appName("SparkSandbox").master("local").getOrCreate();
-        Dataset<Row> data = spark.read().option("multiline", true).json(DATA_FILE_PATH);
+        SparkSession spark = SparkSession.builder()
+            .appName("SparkSandbox")
+            .master("local")
+            .getOrCreate();
+        Dataset<Row> data = spark.read()
+            .option("multiline", true)
+            .json(DATA_FILE_PATH);
         data.printSchema();
         data.show();
         spark.stop();
@@ -39,7 +44,8 @@ public class SparkSandbox {
     }
 
     private static void printElapsed(long elapsed) {
-        String msg = "SparkSandbox::printDataUsingSpark took " + elapsed + " milliseconds.";
+        String msg = "SparkSandbox::printDataUsingSpark took "
+            + elapsed + " milliseconds.";
         System.out.println(Pretty.yellow(msg));
     }
 }
