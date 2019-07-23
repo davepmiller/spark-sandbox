@@ -11,7 +11,7 @@ repositories {
     jcenter()
     repositories {
         maven {
-            url  "https://dl.bintray.com/davepmiller/laser"
+            url  'https://dl.bintray.com/davepmiller/laser'
         }
     }
 }
@@ -21,5 +21,7 @@ dependencies {
     compile 'org.laser:metric:0.0.1'
     compile 'org.apache.spark:spark-core_2.12:2.4.3'
     compile 'org.apache.spark:spark-sql_2.12:2.4.3'
+    compileOnly 'org.projectlombok:lombok:1.18.8'
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
     testCompile 'junit:junit:4.12'
 }

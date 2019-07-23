@@ -1,7 +1,9 @@
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class DataGenerator {
     static void generateJsonToFile(String fileName) throws IOException {
         deleteFile(fileName);
@@ -27,7 +29,7 @@ public class DataGenerator {
         File file = new File(fileName);
         if (file.exists()) {
             if(!file.delete()) {
-                System.out.println("Failed to delete " + fileName);
+                log.error("Failed to delete {}", fileName);
             }
         }
     }

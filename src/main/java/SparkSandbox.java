@@ -1,9 +1,11 @@
+import lombok.extern.slf4j.Slf4j;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 import org.laser.metric.Metric;
 import org.laser.pretty.Pretty;
 
+@Slf4j
 public class SparkSandbox {
     private static final String DATA_FILE_PATH = "/tmp/data.json";
 
@@ -31,7 +33,7 @@ public class SparkSandbox {
         try {
             DataGenerator.generateJsonToFile(DATA_FILE_PATH);
         } catch (Exception e) {
-            System.out.println("Failed to create " + DATA_FILE_PATH);
+            log.error("Failed to create {}", DATA_FILE_PATH);
         }
     }
 
@@ -39,13 +41,13 @@ public class SparkSandbox {
         try {
             DataGenerator.deleteFile(DATA_FILE_PATH);
         } catch (Exception e) {
-            System.out.println("Failed to remove " + DATA_FILE_PATH);
+            log.error("Failed to remove {}", DATA_FILE_PATH);
         }
     }
 
     private static void printElapsed(long elapsed) {
-        String format = "SparkSandbox::printDataUsingSpark took %s milliseconds";
+        String format = "printDataUsingSpark took %s milliseconds";
         String msg = String.format(format, elapsed);
-        System.out.println(Pretty.yellow(msg));
+        log.info(Pretty.yellow(msg));
     }
 }
